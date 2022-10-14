@@ -1,31 +1,25 @@
-class Solution(object):
-    def compareVersion(self, version1, version2):
-        """
-        :type version1: str
-        :type version2: str
-        :rtype: int
-        """
+class Solution:
+    def compareVersion(self, version1: str, version2: str) -> int:
         
-        v1 = version1.split(".")
-        v2 = version2.split(".")
-        
-        while len(v1)>len(v2):
-            v2.append(0)
-        while len(v2)>len(v1):
-            v1.append(0)
-            
-        i = 0
-        while i < len(v1):
-            if int(v1[i]) < int(v2[i]):
-                return -1
-            elif int(v2[i]) < int(v1[i]):
+        first = 0
+        second = 0
+        len_v1 = len(version1)
+        len_v2 = len(version2)
+        n1 = 0
+        n2 = 0
+        while(first < len_v1 or second < len_v2):
+            while(first<len_v1 and version1[first] != '.'):
+                n1 = n1*10 + int(version1[first])
+                first += 1
+            while(second<len_v2 and version2[second] != '.'):
+                n2 = n2*10 + int(version2[second])
+                second += 1
+            if (n1 > n2):
                 return 1
-            else:
-                i += 1
-        
+            if (n2 > n1):
+                return -1
+            n1 = 0
+            n2 = 0
+            second += 1
+            first += 1
         return 0
-                
-            
-            
-            
-        
