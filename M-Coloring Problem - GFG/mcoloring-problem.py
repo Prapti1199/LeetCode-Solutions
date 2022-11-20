@@ -20,7 +20,7 @@ def graphColoring(graph, k, V):
                 color[vertex] = 0
         return False
 
-    color = [0]*V
+    color = [-1]*V
     return colorG(0, graph, k, V, color)
     
     #your code here
