@@ -4,7 +4,7 @@ def graphColoring(graph, k, V):
     
     def possible(graph, vertex, color, col, V):
         for i in range(V):
-            if i!= vertex and graph[vertex][i] and color[i] == col:
+            if graph[vertex][i] and color[i] == col:
                 return False
         return True
     
@@ -13,14 +13,14 @@ def graphColoring(graph, k, V):
             return True
         
         for col in range(k):
-            if possible(graph, vertex, color, col, V):
-                color[vertex] = col
+            if possible(graph, vertex, color, col+1, V):
+                color[vertex] = col+1
                 if colorG(vertex+1, graph, k, V, color):
                     return True
-                color[vertex] = -1
+                color[vertex] = 0
         return False
 
-    color = [-1]*V
+    color = [0]*V
     return colorG(0, graph, k, V, color)
     
     #your code here
