@@ -24,7 +24,7 @@ class Solution:
             r = s[0]
             c = s[1]
             l = s[2]
-            t = max(t,l)
+            t = l
             delta = [[-1,0], [0,-1], [1,0], [0,1]]
             
             for i in delta:
