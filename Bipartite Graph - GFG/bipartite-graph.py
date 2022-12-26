@@ -2,31 +2,44 @@ from collections import deque
 
 class Solution:
     
-    def bfs(self, start, V, adj, color):
-        queue = deque()
-        queue.append(start)
-        color[start] = 0
+    # def bfs(self, start, V, adj, color):
+    #     queue = deque()
+    #     queue.append(start)
+    #     color[start] = 0
         
-        while(queue):
-            s = queue.popleft()
-            for i in adj[s]:
-                if color[i] == -1:
-                    color[i] = 1 - color[s]
-                    queue.append(i)
+    #     while(queue):
+    #         s = queue.popleft()
+    #         for i in adj[s]:
+    #             if color[i] == -1:
+    #                 color[i] = 1 - color[s]
+    #                 queue.append(i)
                 
-                elif color[i] == color[s]:
+    #             elif color[i] == color[s]:
+    #                 return False
+        
+    #     return True
+    
+    def dfs(self, start, col, adj, color):
+        color[start] = col
+        for i in adj[start]:
+            if color[i] == -1:
+                if(self.dfs(i, 1 - col, adj, color) == False):
                     return False
-        
+            elif color[i] == col:
+                return False
+                
         return True
-        
+            
 	def isBipartite(self, V, adj):
 		#code here
 		color = [-1 for i in range(V)]
 		
 		for i in range(V):
 		    if color[i] == -1:
-		        if(self.bfs(i, V, adj, color) == False):
-		            return False
+		      #  if(self.bfs(i, V, adj, color) == False):
+		      #      return False
+		      if(self.dfs(i, 0, adj, color) == False):
+		          return False
 		
 		return True
 
