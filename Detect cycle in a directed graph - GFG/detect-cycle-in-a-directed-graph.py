@@ -3,29 +3,27 @@
 
 class Solution:
     
-    def dfs(self, adj, V, start, visited, pathV):
-        visited[start] = 1
-        pathV[start] = 1
+    def dfs(self, adj, V, start, visited):
+        visited[start] = 2
         
         for s in adj[start]:
             if visited[s] == 0:
-               if self.dfs(adj, V, s, visited, pathV):
+               if self.dfs(adj, V, s, visited):
                     return True
             
-            elif pathV[s] == 1:
+            elif visited[s] == 2:
                 return True
         
-        pathV[start] = 0
+        visited[start]= 1
         return False
     
     #Function to detect cycle in a directed graph.
     def isCyclic(self, V, adj):
         # code here
         visited = [0 for i in range(V)]
-        pathV = [0 for i in range(V)]
         for i in range(V):
             if visited[i] == 0:
-                if self.dfs(adj, V, i, visited, pathV):
+                if self.dfs(adj, V, i, visited):
                     return True
                     
         return False
