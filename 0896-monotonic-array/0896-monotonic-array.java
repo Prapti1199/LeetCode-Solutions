@@ -10,7 +10,7 @@ class Solution {
         boolean increasingSum = nums[j]<nums[j+1];
         
         
-        for(int i=1; i<=nums.length-2; i++){
+        for(int i=j; i<=nums.length-2; i++){
             
             if(nums[i]>nums[i+1] && increasingSum){
                 return false;  
